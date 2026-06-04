@@ -105,6 +105,9 @@ Definitions:
 - Divergence test: If $lim_(n -> oo) a_n != 0$, then $sum a_n$ diverges. If the limit is 0 then the test is inconclusive. *Never use this test to prove convergence.* 
 - Ratio test: Requires $a_n>0$. If $lim_(n -> oo) a_(n+1)/a_n = L$, then the series converges if $L < 1$ and diverges if $L > 1$. If $L=1$ then the test is inconclusive.
 - Comparison test: If $0 <= a_n <= b_n$ for all $n$ and $sum b_n$ converges, then $sum a_n$ converges. If $sum a_n$ diverges, then $sum b_n$ diverges.
+p-series: $sum 1/n^p$ converges if $p > 1$ and diverges if $p <= 1$.
+Geometric series: $sum a r^n$ converges if $|r| < 1$ and diverges if $|r| >= 1$. If it converges, then the sum is $a/(1-r)$.
+
 
 = Limits
 == L'Hopital Rule
@@ -117,6 +120,8 @@ Indeterminate forms:
   [- $0/0$], [- $oo/oo$],
   [- $0 times oo = 1/oo times oo = oo/oo$], [- $oo - oo = 1/0 - 1/0 = 0/0$]
 )
+
+#colbreak()
 
 == Continuity
 If $g$ is continuous at $a$ and $f$ is continuous at $g(a)$, then $f(g(x))$ is continuous at $a$.

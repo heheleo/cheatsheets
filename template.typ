@@ -62,18 +62,17 @@
     footer: "",
     columns: column_count,
     margin: (
-      top: 1.24cm,
+      top: 0.7cm,
       x: 0.2cm,
 			bottom: 0cm,
     ),
     header: context [
-      #text(size: 10pt)[
+      #text(size: 8pt)[
         #header *by #author*
         #h(1fr)
         Page #counter(page).display() of #counter(page).final().first()
         #v(-6pt)
         #line(length: 100%, stroke: 0.5pt + black)
-
       ]
     ],
   )

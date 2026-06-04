@@ -131,7 +131,7 @@ $y = y_H(x) + y_P(x)$ where $y_H$ is the general solution to the homogenous ODE 
     - Underdamped: $beta^2 - 4 m k < 0$ (oscillates infinitely)
     - Simple harmonic motion: $beta = 0$ (undamped)
   ],
-  [#figure(image("/assets/image.png"))],
+  [#figure(image("/assets/springs.png"))],
 )
 
 Resonance: external force $f$ has same form as one of the terms in GS(H). If $beta = 0$, then $P S(I H)$ will grow without bound as $t -> oo$.

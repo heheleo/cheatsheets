@@ -45,6 +45,7 @@
   header: "",
   author: "",
   column_count: 2,
+  font_size: 10pt,
   doc,
 ) = {
   // Set document title and page header:
@@ -52,7 +53,7 @@
 
   // Set fonts:
   set text(
-    size: 11pt,
+    size: font_size,
     fallback: false,
   )
 

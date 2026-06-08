@@ -12,6 +12,7 @@
   header: "Calculus 2 Cheatsheet",
   author: "Leo",
   column_count: 2,
+  font_size: 9.8pt,
 )
 
 === Trigonometric Substitution // Referenced from lecture notes
@@ -70,19 +71,23 @@
 - Divergence test: If $lim_(n -> oo) a_n != 0$, then $sum a_n$ diverges. If the limit is 0 then the test is inconclusive. *Never use this test to prove convergence.*
 - Ratio test: Requires $a_n>0$. If $lim_(n -> oo) a_(n+1)/a_n = L$, then the series converges if $L < 1$ and diverges if $L > 1$. If $L=1$ then the test is inconclusive.
 - Comparison test: If $0 <= a_n <= b_n$ for all $n$ and $sum b_n$ converges, then $sum a_n$ converges. If $sum a_n$ diverges, then $sum b_n$ diverges.
-p-series: $sum 1/n^p$ converges if $p > 1$ and diverges if $p <= 1$.
-Geometric series: $sum a r^n$ converges if $|r| < 1$ and diverges if $|r| >= 1$. If it converges, then the sum is $a/(1-r)$.
-
-
+Common series
+- p-series: $sum_(n=1)^oo 1/n^p$ converges if $p > 1$ and diverges if $p <= 1$.
+- Geometric series: $sum_(n=0)^oo a r^n$ converges if $|r| < 1$ and diverges if $|r| >= 1$. If it converges, then sum is $a/(1-r)$.
+== Taylor series
+- Taylor series of $f$ about $x=a$: $sum_(n=0)^oo (f^((n)) (a))/n! (x-a)^n$
+- Taylor polynomial $n$: include only terms whose total power is less than or equal to $n$.
+Common Maclaurin series (Taylor series about $x=0$):
+#image("/assets/image.png")
+== Complex
+- $e^(i theta) = cos(theta) + i sin(theta)$
+- $sin(x) = 1/(2 i) (e^(i x) - e^(-i x))$
+- $cos(x) = 1/(2) (e^(i x) + e^(-i x))$
 == First Order ODEs
 - *Homogenous 1st order ODE*: $dv(y, x) = f(y/x)$
   - Technique: Let $u = y/x$, transform, and solve using separation of variables
 - *Bernoulli's Equation*: $dv(y, x) + P(x)y = Q(x)y^n$
   - Technique: Let $u = y^(1-n)$, transform into 1st order linear ODE, and solve using integrating factor
-- *Malthusian Model*: $dv(P, t) = k P$ where $k in RR$.
-  - Technique: Solve using separation of variables, solution is $P = A e^(k t)$ where $A in RR$
-- *Malthusian Harvest Model*: $dv(P, t) = k P - c$ and  $k, c in RR$.
-  - Technique: Solve using integrating factor, solution is $P = A e^(k t) + c / k$ where $A in RR$
 - *Mixing Problems*: Let $M$ be the mass of powder/salt in tank. Let $V$ denote volume of solution.
   - $dv(M, t) = C_"in" V_"in" - C_"out" V_"out"$ where C is concentration, $V_"in", V_"out"$ are volumetric flow rates.
   - $dv(M, t) = C_"in" V_"in" - M/V(t) V_"out"$ as $C_"out" = "mass"/"volume"$
@@ -90,6 +95,7 @@ Geometric series: $sum a r^n$ converges if $|r| < 1$ and diverges if $|r| >= 1$.
 === Linear first order ODE
 Form $dv(y, x) + P(x)y = Q(x)$ where $P, Q in RR$. Note coefficient of $dv(y, x)$ is always 1.
 - Technique: Integrating factor. Solve $e^(int P dif x)$ and let $I(x)$ be any of the solutions. Then the ODE reduces to $dv(, x) (I(x)y) = I(x)Q(x)$
+
 == Equilibria
 - *Equilibrium solution*: constant solution of an ODE
   - Found by setting $dv(y, x) = 0$ and solving for y
@@ -116,8 +122,6 @@ $y = y_H(x) + y_P(x)$ where $y_H$ is the general solution to the homogenous ODE 
   - $R(x) = e^(k x)$: $y_p = a e^(k x)$
   - $R(x) = sin(k x)$ or $R(x) = cos(k x)$: $y_p = a sin(k x) + b cos(k x)$
 - Else: Multiply the above guess by $x$ until it is no longer part of $G S(H)$
-
-#colbreak() 
 *Springs:* $m y'' + beta y' + k y = 0$
 - y = displacement of object below equilibrium position (m)
 - m = mass of object (kg)
@@ -135,7 +139,10 @@ $y = y_H(x) + y_P(x)$ where $y_H$ is the general solution to the homogenous ODE 
 )
 
 Resonance: external force $f$ has same form as one of the terms in GS(H). If $beta = 0$, then $P S(I H)$ will grow without bound as $t -> oo$.
+
 == Multivariable Calculus
+- Stationary point: $grad f = 0$ 
+  - Geometric: tangent plane is horizontal (parallel to the x-y plane).
 - Level curve: $z=f(x, y)$ where $z in RR$ is constant
 - Contour plot: collection of level curves for different $z$
 - Cross section: x-z cross section let $y=0$. y-z cross section let $x=0$.
@@ -143,6 +150,9 @@ Resonance: external force $f$ has same form as one of the terms in GS(H). If $be
   - For limit to exist, L must be the same regardless of the path taken to approach $(x_0, y_0)$.
 - Partial derivative: $pdv(f, x)$ is the slope of the tangent line to the x-z cross section. $pdv(f, y)$ is the slope of the tangent line to the y-z cross section.
 - Gradient: $grad f = (pdv(f, x), pdv(f, y)) = (f_x (x,y), f_y (x,y))$
+  - Geometrically, for the surface $z = f(x, y)$:
+    - direction of the vector $grad f$ gives the direction to face to go directly uphill on the surface
+    - the length of $grad f$ gives the slope of the surface directly uphill.
 - Directional derivative: $D_(bold(hat(u))) f(x, y) = grad f(x, y) dotproduct bold(hat(u)) = |grad f| cos theta$ where $theta$ is the angle between $grad f$ and $bold(hat(u))$.
   - $max(D_(bold(hat(u))) f)$ = $|grad f|$ or $theta = 0$ (i.e. $bold(hat(u))$ points in the direction of the gradient).
   - $min(D_(bold(hat(u))) f)$ = $-|grad f|$ or $theta = pi$ (i.e. $bold(hat(u))$ points in the opposite direction of the gradient).
@@ -160,3 +170,8 @@ Resonance: external force $f$ has same form as one of the terms in GS(H). If $be
   - If $A C - B^2 < 0$, then $P$ is a saddle point
 - If $A C - B^2 = 0$, then the test is inconclusive
 
+=== Common mistakes
+- When solving DE using seperation of variable, make sure to consider the constant solution case
+- When using Pythagorean identities, make sure to include the $\pm$ sign when taking square roots
+- Don't forget $c+d i$ when calculating integrals of complex numbers
+- Check copy errors, variable names

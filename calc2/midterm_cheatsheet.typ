@@ -52,8 +52,6 @@ Choose $u$ to be the first function in LIATE.
 #image("/assets/parfrac_1.png", width: 60%)
 #image("/assets/parfrac_2.png")
 
-#colbreak()
-
 == Derivatives
 
 #list(

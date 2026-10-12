@@ -15,7 +15,7 @@
   font_size: 9.8pt,
 )
 
-=== Trigonometric Substitution // Referenced from lecture notes
+= Trigonometric Substitution // Referenced from lecture notes
 #table(
   columns: (0.5fr, auto, 1fr),
   [Form], [Substitution], [Identity],
@@ -31,7 +31,8 @@
   [$x = a cosh theta$ \ $x = a sec theta$],
   [$cosh^2 theta - 1 = sinh^2 theta$ \ $sec^2 theta - 1 = tan^2 theta$],
 )
-=== Hyperbolic Functions // Reference: lecture notes
+
+= Hyperbolic Functions // Reference: lecture notes
 #table(
   columns: (3fr, auto, auto, 2fr),
   [*Function*], [*Domain*], [*Range*], [*Properties*],
@@ -48,7 +49,6 @@
 )
 #image("/assets/hyperbolic_1.png")
 #image("/assets/reciprocal_hyperbolic.png")
-
 
 == Inverse Hyperbolic Functions
 - $arcsinh(x) = log(x+sqrt(x^2 + 1))$
@@ -74,16 +74,19 @@
 Common series
 - p-series: $sum_(n=1)^oo 1/n^p$ converges if $p > 1$ and diverges if $p <= 1$.
 - Geometric series: $sum_(n=0)^oo a r^n$ converges if $|r| < 1$ and diverges if $|r| >= 1$. If it converges, then sum is $a/(1-r)$.
+
 == Taylor series
 - Taylor series of $f$ about $x=a$: $sum_(n=0)^oo (f^((n)) (a))/n! (x-a)^n$
 - Taylor polynomial $n$: include only terms whose total power is less than or equal to $n$.
 Common Maclaurin series (Taylor series about $x=0$):
-#image("/assets/image.png")
-== Complex
+#image("/assets/maclaurin_series.png")
+
+= Complex numbers
 - $e^(i theta) = cos(theta) + i sin(theta)$
 - $sin(x) = 1/(2 i) (e^(i x) - e^(-i x))$
 - $cos(x) = 1/(2) (e^(i x) + e^(-i x))$
-== First Order ODEs
+
+= First Order ODEs
 - *Homogenous 1st order ODE*: $dv(y, x) = f(y/x)$
   - Technique: Let $u = y/x$, transform, and solve using separation of variables
 - *Bernoulli's Equation*: $dv(y, x) + P(x)y = Q(x)y^n$
@@ -92,7 +95,7 @@ Common Maclaurin series (Taylor series about $x=0$):
   - $dv(M, t) = C_"in" V_"in" - C_"out" V_"out"$ where C is concentration, $V_"in", V_"out"$ are volumetric flow rates.
   - $dv(M, t) = C_"in" V_"in" - M/V(t) V_"out"$ as $C_"out" = "mass"/"volume"$
 
-=== Linear first order ODE
+== Linear first order ODE
 Form $dv(y, x) + P(x)y = Q(x)$ where $P, Q in RR$. Note coefficient of $dv(y, x)$ is always 1.
 - Technique: Integrating factor. Solve $e^(int P dif x)$ and let $I(x)$ be any of the solutions. Then the ODE reduces to $dv(, x) (I(x)y) = I(x)Q(x)$
 
@@ -104,10 +107,11 @@ Form $dv(y, x) + P(x)y = Q(x)$ where $P, Q in RR$. Note coefficient of $dv(y, x)
   columns: 2,
   [Stable], [#image("/assets/stable_equilibria.png", width: 80%)],
   [Unstable], [#image("/assets/unstable_equilibria.png", width: 80%)],
-  [Semistable], [#image("/assets/semistable_equilibria_1.png", width: 80%) #image("/assets/semistable_equilibria_2.png", width: 80%)],
+  [Semistable],
+  [#image("/assets/semistable_equilibria_1.png", width: 80%) #image("/assets/semistable_equilibria_2.png", width: 80%)],
 )
 
-== Second Order ODE
+== Second order ODE
 Homogenous Linear 2nd order constant coefficient ODE
 Form: $a y'' + b y' + c y = 0$ where $a, b, c in RR$ and $a != 0$.
 Technique: Characteristic equation. Let $y = e^(lambda x)$. This yields the characteristic equation $a lambda^2 + b lambda + c = 0$. Solve for $lambda$:
@@ -140,8 +144,8 @@ $y = y_H(x) + y_P(x)$ where $y_H$ is the general solution to the homogenous ODE 
 
 Resonance: external force $f$ has same form as one of the terms in GS(H). If $beta = 0$, then $P S(I H)$ will grow without bound as $t -> oo$.
 
-== Multivariable Calculus
-- Stationary point: $grad f = 0$ 
+= Multivariable Calculus
+- Stationary point: $grad f = 0$
   - Geometric: tangent plane is horizontal (parallel to the x-y plane).
 - Level curve: $z=f(x, y)$ where $z in RR$ is constant
 - Contour plot: collection of level curves for different $z$
@@ -158,11 +162,11 @@ Resonance: external force $f$ has same form as one of the terms in GS(H). If $be
   - $min(D_(bold(hat(u))) f)$ = $-|grad f|$ or $theta = pi$ (i.e. $bold(hat(u))$ points in the opposite direction of the gradient).
   - $D_(bold(hat(u))) f = 0$ or $theta = pi/2$ (i.e. $bold(hat(u))$ is perpendicular to the gradient).
 - Tangent plane: $z = f(x_0, y_0) + f_x (x_0,y_0)(x-x_0) + f_y (x_0,y_0)(y-y_0)$
-- Chain rule case 1: $z = f(x, y)$ where $x = g(t)$ and $y = h(t)$.
+- Chain rule for multivariable differentiation
+  - Case 1: $z = f(x, y)$ where $x = g(t)$ and $y = h(t)$.
   $display(dv(z, t) = pdv(z, x) dv(x, t) + pdv(z, y) dv(y, t))$
-- Case 2: $z = f(x, y)$ where $x = g(s, t)$ and $y = h(s, t)$.
-
-  $display(pdv(z, s) = pdv(z, x) pdv(x, s) + pdv(z, y) pdv(y, s) wide  pdv(z, t) = pdv(z, x) pdv(x, t) + pdv(z, y) pdv(y, t))$
+  - Case 2: $z = f(x, y)$ where $x = g(s, t)$ and $y = h(s, t)$.
+  $display(pdv(z, s) = pdv(z, x) pdv(x, s) + pdv(z, y) pdv(y, s) wide pdv(z, t) = pdv(z, x) pdv(x, t) + pdv(z, y) pdv(y, t))$
 *Second Derivative Test*: Hessian Determinant/Function. Let $A = f_(x x)(P)$, $B = f_(x y)(P) = f_(y x)(P)$, and $C = f_(y y)(P)$. Or, $grad f_x (P) = (A, B)$ and $grad f_y (P) = (B, C)$. Hessian determinant is $A C - B^2$:
 - If $A C - B^2 != 0$:
   - If $A C - B^2 > 0$ and $A > 0$, then $P$ is a local minimum
@@ -170,8 +174,8 @@ Resonance: external force $f$ has same form as one of the terms in GS(H). If $be
   - If $A C - B^2 < 0$, then $P$ is a saddle point
 - If $A C - B^2 = 0$, then the test is inconclusive
 
-=== Common mistakes
+= Common mistakes
 - When solving DE using seperation of variable, make sure to consider the constant solution case
-- When using Pythagorean identities, make sure to include the $\pm$ sign when taking square roots
+- When using Pythagorean identities, make sure to include the $pm$ sign when taking square roots
 - Don't forget $c+d i$ when calculating integrals of complex numbers
 - Check copy errors, variable names

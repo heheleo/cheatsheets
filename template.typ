@@ -6,6 +6,7 @@
 )
 
 // Some shorthands
+// Referenced from Evan Chen's Typst template
 #let pm = sym.plus.minus
 #let mp = sym.minus.plus
 #let int = sym.integral
@@ -56,16 +57,20 @@
     size: font_size,
     fallback: false,
   )
+  
+  // Set heading sizes:
+  show heading.where(level: 1): set text(size: 0.9em)
+  show heading.where(level: 2): set text(size: 0.9em)
 
   set columns(gutter: 0.5em)
-  
+
   set page(
     footer: "",
     columns: column_count,
     margin: (
       top: 0.7cm,
       x: 0.2cm,
-			bottom: 0cm,
+      bottom: 0cm,
     ),
     header: context [
       #text(size: 8pt)[
@@ -77,7 +82,6 @@
       ]
     ],
   )
-
 
   doc
 }

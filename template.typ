@@ -1,4 +1,7 @@
 #import "@preview/physica:0.9.8": *
+#import "@preview/theorion:0.6.0": *
+#import "@preview/tdtr:0.6.1" : *
+#import cosmos.default: *
 
 #let fonts = (
   math: "CMU Serif",
@@ -17,8 +20,11 @@
 #let oiiint = sym.integral.vol
 #let detmat(..args) = math.mat(delim: "|", ..args)
 #let ee = $bold(upright(e))$
+#let Bin = math.op("Bin")
 #let dang = sym.angle.arc
 #let hl = highlight
+#let innerproduct(a, b) = $chevron.l #a, #b chevron.r$
+#let ip = innerproduct
 
 // Custom math operators
 #let cosec = math.op("cosec")
@@ -26,6 +32,10 @@
 #let arcsinh = math.op("arcsinh")
 #let arccosh = math.op("arccosh")
 #let arctanh = math.op("arctanh")
+#let Tr = math.op("Tr")
+#let nullity = math.op("nullity")
+#let proj = math.op("proj")
+#let span = math.op("span")
 
 // Colors
 #let cherryblossom = rgb("#FFB7C5")
@@ -49,6 +59,8 @@
   font_size: 10pt,
   doc,
 ) = {
+  show: show-theorion
+
   // Set document title and page header:
   set document(title: header, author: author)
 
@@ -59,7 +71,7 @@
   )
   
   // Set heading sizes:
-  show heading.where(level: 1): set text(size: 0.9em)
+  show heading.where(level: 1): set text(size: 0.8em)
   show heading.where(level: 2): set text(size: 0.9em)
 
   set columns(gutter: 0.5em)
@@ -68,9 +80,9 @@
     footer: "",
     columns: column_count,
     margin: (
-      top: 0.7cm,
-      x: 0.2cm,
-      bottom: 0cm,
+      top: 0.5cm + 0.3cm,
+      x: 0.5cm,
+      bottom: 0.5cm,
     ),
     header: context [
       #text(size: 8pt)[

@@ -4,10 +4,18 @@
   header: "Linear Algebra Cheatsheet",
   author: "Leo",
   column_count: 2,
-  font_size: 8.9pt,
+  font_size: 8.6pt,
 )
 
 = Linear equations
+*REF*: Row echelon form of a matrix. A matrix is in REF if:
++ any rows that consists of only zeros are at the bottom of the matrix
++ leading entry (first nonzero element of a row from the left) is further to the right for each successive row in the matrix.
+*RREF*: Reduced row echelon form of a matrix. RREF is unique. Requirements:
++ it is in REF
++ each leading entry is a 1
++ each column that contains a leading 1 has all other entries 0.
+
 - *No solutions when*
   - REF has a row [0 0 ... 0 | b] where $b != 0$
   - $rank(A) < rank([A | bold(b)])$
@@ -23,6 +31,7 @@
 - *Matrix multiplication*: $(A B)_(i j) = sum_(k=1)^n A_(i k) B_(k j)$
 - *Trace*: $Tr(A) = sum_(i = 1)^n A_(i i)$
   - $A, B$ (square, same order) implies $Tr(A B) = Tr(B A)$
+- *Rank*: The number of leading entries in REF or RREF. $rank(A) = rank(A^T)$
 - *Transpose*: $(A^T)_(i j) = A_(j i)$
   - $(A^T)^T = A$
   - $(A + B)^T = A^T + B^T$
@@ -95,6 +104,7 @@
 - *Field*: A set $F$ of scalars with addition, subtraction, multiplication, and division by a nonzero scalar defined, satisfying the field axioms (closure, associativity, commutativity, distributivity, identities, and inverses)
   - Define $FF_2 = \{0, 1\}$ with mod 2 arithmetic. $a thin (mod 2) = a+2k thin (mod 2)$
 - *Subspaces*: A subset $W$ of a vector space $V$ is a subspace if it is itself a vector space under the same operations as $V$.
+  - All subspaces of $RR^3$ include: $\{ bold(0) \}$, $RR^3$, all lines through the origin, and all planes through the origin.
 - *Subspace theorem*: Let $W subset.eq V$. Then $W$ is a subspace of $V$ iff for all $bold(u), bold(v) in W$ and all $alpha in FF$
   + $bold(0) in W$ (inherits zero vector)
   + $bold(u) + bold(v) in W$ (closure under addition)
@@ -102,7 +112,7 @@
 - *Linear combination of vectors*: $sum_(i=1)^k alpha_i bold(v)_i$
 - *Span*: The set of all linear combinations of the vectors $bold(v)_1, ..., bold(v)_k$, denoted $span\{bold(v)_1, ..., bold(v)_k\}$
   - The span is a subspace of $V$.
-  - Span always contains the zero vector
+  - Span always contains the zero vector $bold(0)$
   - *Finding span*: If $A = [bold(v)_1 dots bold(v)_k]$, then $bold(v)_1,...,bold(v)_k$ span $FF^n$ $<=>$ $[A | bold(w)]$ is consistent for all $bold(w) in FF^n$ $<=>$ $rank(A) = n$.
 - *Linear dependence and independence*:
   - *Linearly dependent*: A set of vectors $\{bold(v)_1, ..., bold(v)_k\}$ is linearly dependent if there exist scalars $alpha_1, ..., alpha_k$, not all zero, such that $sum_(i=1)^k alpha_i bold(v)_i = bold(0)$.
@@ -111,7 +121,7 @@
     - In the case $k = n$, $\{bold(v)_1, ..., bold(v)_k\}$ is linearly independent $<=>$ $det(A) != 0$.
 - *Basis*: A set of vectors $\{bold(v)_1, ..., bold(v)_k\}$ is a basis for a vector space $V$ if it is linearly independent and spans $V$.
   - *Finding a basis*:
-    + Column method: The pivot columns of a matrix $A$ form a basis for the column space of $A$. 
+    + Column method: The pivot columns of a matrix $A$ form a basis for the column space of $A$.
     + Row method: The non-zero rows of a matrix $A$ in RREF form a basis for the row space of $A$.
 - *Dimension*: The number of vectors in a basis for a vector space $V$
 - *Coordinates relative to a basis*:
@@ -122,24 +132,29 @@
 - *Solution space/nullspace* of $A in cal(M)_(m,n)(FF)$: The set $S = \{ bold(x) in FF^n | A bold(x) = bold(0) \}$. It is a subspace of $FF^n$.
 - *Nullity*: The dimension of the solution space/nullspace of $A$.
 - *Column space*: span of the columns of $A$. It is a subspace of $FF^m$.
-- Row space: span of the rows of $A$. It is a subspace of $FF^n$.
+- *Row space*: span of the rows of $A$. It is a subspace of $FF^n$.
   - $rank(A) = dim("row space of A") = dim("column space of A")$
-
+- If $A = [bold(v)_1 ... bold(v)_k]$ and $B = [bold(u)_1 ... bold(u)_k]$, where $A ~ B$, then the columns of $A$ and $B$ share the same linear relations: $alpha_1 bold(v)_1 + ... + alpha_k bold(v)_k = bold(0) <=> alpha_1 bold(u)_1 + ... + alpha_k bold(u)_k = bold(0)$.
+  - Justification for column method: Row operations do not change the linear relations among the columns of a matrix. Therefore, the pivot columns of $A$ are linearly independent and span the column space of $A$ - thus forming a basis for the column space of $A$.
 = Linear transformations
 
 - *Linear transformation* from $U$ to $V$: A function $T: U -> V$ such that for all $bold(u), bold(v) in U$ and all scalars $alpha in FF$
   + $T(bold(u) + bold(v)) = T(bold(u)) + T(bold(v))$ (preserves vector addition)
   + $T(alpha bold(u)) = alpha T(bold(u))$ (preserves scalar multiplication)
-- *Anticlockwise rotation* in $RR^2$ by angle $theta$: $T(bold(v)) = mat(delim: "[", cos(theta), -sin(theta); sin(theta), cos(theta)) bold(v)$
-- *Clockwise rotation* in $RR^2$ by angle $theta$: $T(bold(v)) = mat(delim: "[", cos(theta), sin(theta); -sin(theta), cos(theta)) bold(v)$
-- *Reflection* about the line $y = m x$: $T(bold(v)) = mat(delim: "[", (1 - m^2)/(1 + m^2), 2 m/(1 + m^2); 2 m/(1 + m^2), (m^2 - 1)/(1 + m^2)) bold(v)$
+  - *Anticlockwise rotation* in $RR^2$ by angle $theta$: $display(T(bold(v)) = mat(delim: "[", cos(theta), -sin(theta); sin(theta), cos(theta)) bold(v))$
+  - *Clockwise rotation* in $RR^2$ by angle $theta$: $display(T(bold(v)) = mat(delim: "[", cos(theta), sin(theta); -sin(theta), cos(theta)) bold(v))$
+  - *Reflection* about the line $y = m x$: $display(T(bold(v)) = mat(delim: "[", (1 - m^2)/(1 + m^2), (2 m)/(1 + m^2); (2 m)/(1 + m^2), (m^2 - 1)/(1 + m^2)) bold(v))$
+  - *Shear* parallel to the $x$-axis by $k$ units: $display(T(bold(v)) = mat(delim: "[", 1, k; 0, 1) bold(v))$
+  - *Shear* parallel to the $y$-axis by $k$ units: $display(T(bold(v)) = mat(delim: "[", 1, 0; k, 1) bold(v))$
 - *Matrix representations of general linear transformations*:
   - $[T(bold(u))]_cal(C) = [T]_(cal(C), cal(B)) [bold(u)]_cal(B)$
   - $[T]_(cal(C), cal(B)) = [ [T(bold(b)_1)]_cal(C) quad ... quad [T(bold(b)_n)]_cal(C) ]$
+  - Applying $[T]$, then $[R]$: new matrix is $[R][T]$.
+  - Number of rows is the dimension of the codomain, and number of columns is the dimension of the domain.
 - *Kernel/nullspace*: The set $ker(T) = \{bold(u) in U | T(bold(u)) = bold(0)\}$. It is a subspace of $U$.
 - *Image/range*: The set $im(T) = \{T(bold(u)) | bold(u) in U\}$. It is a subspace of $V$.
-- *Rank*: The dimension of the image/range of $T$.
-- *Nullity*: The dimension of the kernel/nullspace of $T$.
+- *Rank* of linear transformation: The dimension of the image/range of $T$.
+- *Nullity* of linear transformation: The dimension of the kernel/nullspace of $T$.
 - *Rank-nullity theorem (for transformations)*: $rank(T) + nullity(T) = dim(U)$
 - *Injective*: $T$ is injective iff $ker(T) = \{bold(0)\}$ (only the zero vector maps to the zero vector)
 - *Surjective*: $T$ is surjective iff $im(T) = V$ (the image of $T$ is the entire codomain)
@@ -156,24 +171,24 @@
 - *Diagonalisation*: $A=P D P^(-1)$ where $P=[bold(v)_1 ... bold(v)_n]$ and $D=diag(lambda_1, ..., lambda_n)$
   - A square matrix is diagonalisable iff it has $n$ linearly independent eigenvectors in $FF^n$.
   - In other words, the algebraic multiplicity of each eigenvalue equals its geometric multiplicity.
-- *Powers of a matrix*: $A^k = P D^k P^(-1)$ where $D^k = diag(lambda_1^k, ..., lambda_n^k)$ 
+- *Powers of a matrix*: $A^k = P D^k P^(-1)$ where $D^k = diag(lambda_1^k, ..., lambda_n^k)$
 
 = Inner product spaces
-- *Real inner product*: A function $ip(.,.): V times V -> RR$ satisfying:
+- *Real inner product*: A function $ip(., .): V times V -> RR$ satisfying:
   1. $ip(bold(u), bold(v)) = ip(bold(v), bold(u))$ (symmetry)
   2. $ip(bold(u) + bold(v), bold(w)) = ip(bold(u), bold(w)) + ip(bold(v), bold(w))$ (linearity of vector addition)
   3. $ip(alpha bold(u), bold(v)) = alpha ip(bold(u), bold(v))$ (linearity of scalar multiplication)
   4. $ip(bold(u), bold(u)) >= 0$ and $ip(bold(u), bold(u)) = 0$ $=>$ $bold(u) = bold(0)$ (positivity)
-- *Hermitian inner product*: A function $ip(.,.): V times V -> CC$ satisfying:
-  1. $ip(bold(u), bold(v)) = overline(ip(bold(v), bold(u)))$ (Hermitian symmetry)
-  2. $ip(bold(u) + bold(v), bold(w)) = ip(bold(u), bold(w)) + ip(bold(v), bold(w))$ (linearity of vector addition)
-  3. $ip(alpha bold(u), bold(v)) = alpha ip(bold(u), bold(v))$ (linearity of scalar multiplication)
-  4. $ip(bold(u), bold(u)) in RR$ with $ip(bold(u), bold(u)) >= 0$, and $ip(bold(u), bold(u)) = 0$ $=>$ $bold(u) = bold(0)$ (positivity)
+// - *Hermitian inner product*: A function $ip(.,.): V times V -> CC$ satisfying:
+//   1. $ip(bold(u), bold(v)) = overline(ip(bold(v), bold(u)))$ (Hermitian symmetry)
+//   2. $ip(bold(u) + bold(v), bold(w)) = ip(bold(u), bold(w)) + ip(bold(v), bold(w))$ (linearity of vector addition)
+//   3. $ip(alpha bold(u), bold(v)) = alpha ip(bold(u), bold(v))$ (linearity of scalar multiplication)
+//   4. $ip(bold(u), bold(u)) in RR$ with $ip(bold(u), bold(u)) >= 0$, and $ip(bold(u), bold(u)) = 0$ $=>$ $bold(u) = bold(0)$ (positivity)
 - *Norm/length*: $||bold(u)|| = sqrt(ip(bold(u), bold(u)))$
 - *Cauchy-Schwarz inequality*: $|ip(bold(u), bold(v))| <= ||bold(u)|| ||bold(v)||$
-- *Hermitian dot product*: $ip(bold(u), bold(v)) = sum_(i=1)^n u_i overline(v_i)$. Matrix form: $ip(bold(u), bold(v)) = bold(v)^* bold(u)$ where $bold(v)^* = overline(bold(v))^T$ with $bold(u), bold(v)$ being column vectors.
+// - *Hermitian dot product*: $ip(bold(u), bold(v)) = sum_(i=1)^n u_i overline(v_i)$. Matrix form: $ip(bold(u), bold(v)) = bold(v)^* bold(u)$ where $bold(v)^* = overline(bold(v))^T$ with $bold(u), bold(v)$ being column vectors.
 - *Angle for real inner product space*: $cos(theta) = ip(bold(u), bold(v))/(||bold(u)|| ||bold(v)||)$
-- *Angle for complex inner product space*: $cos(theta) = Re(ip(bold(u), bold(v)))/(||bold(u)|| ||bold(v)||)$
+// - *Angle for complex inner product space*: $cos(theta) = Re(ip(bold(u), bold(v)))/(||bold(u)|| ||bold(v)||)$
 - *Orthogonal vectors*: $ip(bold(u), bold(v)) = 0$
 - *Orthogonal set*: A set of vectors $\{bold(v)_1, ..., bold(v)_k\}$ is orthogonal if $ip(bold(v)_i, bold(v)_j) = 0$ for all $i != j$.
 - *Orthonormal set*: A set of vectors $\{bold(v)_1, ..., bold(v)_k\}$ is orthonormal if it is orthogonal and $||bold(v)_i|| = 1$ for all $i$.
@@ -195,17 +210,17 @@
   ...
   - $bold(w)_k = bold(v)_k - sum_(i=1)^(k-1) ip(bold(v)_k, bold(u)_i) bold(u)_i$
   - $bold(u)_k = 1/(||bold(w)_k||) bold(w)_k$
-- *QR decomposition*: consider $k <= n$ linearly independent vectors in $RR^n$, $\{bold(v)_1, ..., bold(v)_k\}$. Let $\{bold(u)_1, ..., bold(u)_k\}$ be the orthonormal basis obtained from the Gram-Schmidt procedure. Then, let the $n times k$ matrices $A,Q$ be defined as $A = [bold(v)_1 ... bold(v)_k]$ and $Q = [bold(u)_1 ... bold(u)_k]$. Define the $k times k$ upper triangular matrix
-$
-  R = mat(
-    delim: "[",
-    ip(bold(v)_1, bold(u)_1), ip(bold(v)_2, bold(u)_1), ..., ip(bold(v)_k, bold(u)_1);
-    0, ip(bold(v)_2, bold(u)_2), ..., ip(bold(v)_k, bold(u)_2);
-    dots.v, , ..., dots.v;
-    0, 0, ..., ip(bold(v)_k, bold(u)_k)
-  )
-$
-then $A = Q R$ is the QR decomposition of $A$.
+// - *QR decomposition*: consider $k <= n$ linearly independent vectors in $RR^n$, $\{bold(v)_1, ..., bold(v)_k\}$. Let $\{bold(u)_1, ..., bold(u)_k\}$ be the orthonormal basis obtained from the Gram-Schmidt procedure. Then, let the $n times k$ matrices $A,Q$ be defined as $A = [bold(v)_1 ... bold(v)_k]$ and $Q = [bold(u)_1 ... bold(u)_k]$. Define the $k times k$ upper triangular matrix
+// $
+//   R = mat(
+//     delim: "[",
+//     ip(bold(v)_1, bold(u)_1), ip(bold(v)_2, bold(u)_1), ..., ip(bold(v)_k, bold(u)_1);
+//     0, ip(bold(v)_2, bold(u)_2), ..., ip(bold(v)_k, bold(u)_2);
+//     dots.v, , ..., dots.v;
+//     0, 0, ..., ip(bold(v)_k, bold(u)_k)
+//   )
+// $
+// then $A = Q R$ is the QR decomposition of $A$.
 - *Least squares curve fitting*. The least squares solution for the line $y = a+b x$ of best fit for the points $(x_1, y_1), ..., (x_n, y_n)$ is determined by $A^T A bold(u) = A^T bold(y)$, or $bold(u) = (A^T A)^(-1) A^T bold(y)$, where $A = mat(delim: "[", 1, x_1; 1, x_2; dots.v; 1, x_n)$ and $bold(y) = mat(delim: "[", y_1; y_2; dots.v; y_n)$, and $bold(u) = mat(delim: "[", a; b)$.
 - *Orthogonal matrix*: a real $n times n$ matrix such that $Q^(-1) = Q^T$. To show, use $Q^T Q = I_n$.
   - Columns of $Q$ form an orthonormal basis for $RR^n$ using Euclidean dot product.
@@ -216,5 +231,5 @@ then $A = Q R$ is the QR decomposition of $A$.
   + all eigenvalues $lambda_i$ of $A$ are real
   + eigenvectors corresponding to distinct eigenvalues are orthogonal
   + there is an orthonormal basis $\{ bold(v)_1, ..., bold(v)_n \}$ consisting of eigenvectors of $A$
-  + A is diagonalisable with $A = Q D Q^(-1) = Q D Q^T$ where $D = diag(lambda_1,...,lambda_n)$ and $Q$ is the orthogonal matrix $[bold(v)_1 ... bold(v)_n]$
+  + A is diagonalisable with $A = Q D Q^(-1) = Q D Q^T$ where $D = diag(lambda_1, ..., lambda_n)$ and $Q$ is the orthogonal matrix $[bold(v)_1 ... bold(v)_n]$
   + Spectral theorem: expressing real symmetric matrices in terms of their eigenvalues and eigenvectors. $A = lambda_1 bold(v)_1 bold(v)_1^T + ... + lambda_n bold(v)_n bold(v)_n^T$ where $\{bold(v)_1, ..., bold(v)_n\}$ is an orthonormal basis of eigenvectors of $A$.

@@ -40,3 +40,7 @@ typst compile --root . data_analysis/exam_cheatsheet.typ
 - The Data Analysis cheatsheet is based on [Shervine Amidi's CME 106 Statistics cheatsheet](https://stanford.edu/~shervine/teaching/cme-106/cheatsheet-statistics/).
 - [Evan Chen](https://web.evanchen.cc/)'s Typst template.
 - Built with the Typst packages [`theorion`](https://typst.app/universe/package/theorion), [`physica`](https://typst.app/universe/package/physica), and [`tdtr`](https://typst.app/universe/package/tdtr).
+
+## AI declaration
+
+AI tools were used to check facts and grammar within the cheatsheet.

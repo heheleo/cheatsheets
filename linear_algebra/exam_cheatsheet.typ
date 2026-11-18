@@ -2,7 +2,6 @@
 
 #show: conf.with(
   header: "Linear Algebra Cheatsheet",
-  author: "Leo",
   column_count: 2,
   font_size: 8.6pt,
 )

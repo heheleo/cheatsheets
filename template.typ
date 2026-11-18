@@ -86,7 +86,7 @@
     ),
     header: context [
       #text(size: 8pt)[
-        #header *by #author*
+        #header
         #h(1fr)
         Page #counter(page).display() of #counter(page).final().first()
         #v(-6pt)

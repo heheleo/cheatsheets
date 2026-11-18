@@ -10,9 +10,8 @@
 
 #show: conf.with(
   header: "Calculus 2 Cheatsheet",
-  author: "Leo",
   column_count: 2,
-  font_size: 9.8pt,
+  font_size: 9pt,
 )
 
 = Trigonometric Substitution // Referenced from lecture notes

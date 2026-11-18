@@ -2,7 +2,6 @@
 
 #show: conf.with(
   header: "Midsemester Calculus 2 Cheatsheet",
-  author: "Leo",
   column_count: 2,
 )
 
@@ -77,6 +76,7 @@ Choose $u$ to be the first function in LIATE.
   [$RR$],
   [$(-1, 1)$],
   [odd, increasing, $tanh(0) = 0$, asymptotes $y = pm 1$],
+
   [$ sech(x) = 1/cosh(x) $], [$RR$], [$(0, 1]$], [even, $sech(0) = 1$, 2 points of inflection, asymptote $y=0$],
   [$ cosech(x) = 1/sinh(x) $], [$RR \\ {0}$], [$RR \\ {0}$], [odd, asymptotes $y=0, x=0$],
   [$ coth(x) = 1/tanh(x) $], [$RR \\ {0}$], [$RR \\ [-1, 1]$], [odd, asymptotes $y= pm 1, \ x=0$],
@@ -92,15 +92,19 @@ Definitions:
 #table(
   columns: (auto, auto, auto, auto),
   [*Function*], [*Domain*], [*Range*], [*Cancellation*],
-  [$ arcsinh(x)$], [$RR$], [$RR$], [$arcsinh(sinh(x)) = x, x in RR$ \ $sinh(arcsinh(x)) = x, x in RR$],
-  [$ arccosh(x)$], [$[1, oo)$], [$[0, oo)$], [$arccosh(cosh(x)) = x, x in [0, oo)$ \ $cosh(arccosh(x)) = x, x in [1, oo)$],
-  [$ arctanh(x)$], [$(-1, 1)$], [$RR$], [$arctanh(tanh(x)) = x, x in RR$ \ $tanh(arctanh(x)) = x, x in (-1, 1)$],
+  [$arcsinh(x)$], [$RR$], [$RR$], [$arcsinh(sinh(x)) = x, x in RR$ \ $sinh(arcsinh(x)) = x, x in RR$],
+  [$arccosh(x)$],
+  [$[1, oo)$],
+  [$[0, oo)$],
+  [$arccosh(cosh(x)) = x, x in [0, oo)$ \ $cosh(arccosh(x)) = x, x in [1, oo)$],
+
+  [$arctanh(x)$], [$(-1, 1)$], [$RR$], [$arctanh(tanh(x)) = x, x in RR$ \ $tanh(arctanh(x)) = x, x in (-1, 1)$],
 )
 #image("/assets/inverse_hyperbolic.png")
 
 
 = Series and Sequences // Reference: lecture notes
-- Divergence test: If $lim_(n -> oo) a_n != 0$, then $sum a_n$ diverges. If the limit is 0 then the test is inconclusive. *Never use this test to prove convergence.* 
+- Divergence test: If $lim_(n -> oo) a_n != 0$, then $sum a_n$ diverges. If the limit is 0 then the test is inconclusive. *Never use this test to prove convergence.*
 - Ratio test: Requires $a_n>0$. If $lim_(n -> oo) a_(n+1)/a_n = L$, then the series converges if $L < 1$ and diverges if $L > 1$. If $L=1$ then the test is inconclusive.
 - Comparison test: If $0 <= a_n <= b_n$ for all $n$ and $sum b_n$ converges, then $sum a_n$ converges. If $sum a_n$ diverges, then $sum b_n$ diverges.
 p-series: $sum 1/n^p$ converges if $p > 1$ and diverges if $p <= 1$.
@@ -116,7 +120,7 @@ Indeterminate forms:
   columns: 2,
   gutter: 1em,
   [- $0/0$], [- $oo/oo$],
-  [- $0 times oo = 1/oo times oo = oo/oo$], [- $oo - oo = 1/0 - 1/0 = 0/0$]
+  [- $0 times oo = 1/oo times oo = oo/oo$], [- $oo - oo = 1/0 - 1/0 = 0/0$],
 )
 
 #colbreak()
